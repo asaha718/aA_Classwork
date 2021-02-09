@@ -22,13 +22,33 @@ class Manager < Employee
   end
 
   def bonus(multiplier)
-
+    queue = [self]
     salaries = 0 
-    employees.each do |employee|
-      salaries += employee.salary
-    end 
-    bonus = (salaries) * multiplier
+    until queue.empty?
+      first = queue.shift
+      if first.is_a?(Manager)
+        queue.concat(first.employees)
+      end
+      salaries += first.salary
+    end
+    salaries -= self.salary
+    bonus = salaries * multiplier
   end
+
+
+  # def bonus(multiplier)
+  #   salaries = 0 
+  #   employees.each do |employee|
+  #     salaries += employee.salary
+  #     if employee.is_a?(Manager)
+  #       employee.employees.each do |grand_employee|
+  #         salaries += grand_employee.salary
+  #       end
+  #     end
+  #   end 
+  #   bonus = salaries * multiplier
+  # end
+
 
   def add_employee(employee)
     if employee.boss == self
@@ -46,8 +66,8 @@ david = Employee.new("David", "TA", 10000, darren)
 darren.add_employee(shawna)
 darren.add_employee(david)
 
-
-p ned.bonus(2) #156000
+p ned.salary
+p darren.salary
 p ned.bonus(5) # => 500_000
 p darren.bonus(4) # => 88_000
 p david.bonus(3) # => 30_000
