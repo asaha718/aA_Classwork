@@ -41,7 +41,7 @@ module Slideable
         start_pos = self.pos
         valid = true
         moves_in_dir = []
-        current_pos = start_pos
+        current_pos = start_pos.dup
         while valid
             #increments current position 
             current_pos[0] += dir[0]
@@ -51,10 +51,13 @@ module Slideable
             case current_pos
             when current_pos[0] < 0 || current_pos[1] < 0 #out of bounds of board
                 valid = false
+                next
             when current_pos[0] > 7 || current_pos[1] > 7 #out of bounds of board
                 valid = false
+                next
             when self.board[current_pos].color == self.color #your piece blocks it
                 valid = false
+                next
             else
                 #it's valid so far. 
                 #if there's another piece:
@@ -115,7 +118,8 @@ class OutOfBoundsError < StandardError
 end
 
 class Piece
-    attr_reader :color, :pos, :board
+    attr_reader :color, :board
+    attr_accessor :pos
 
     def initialize(color, board, pos)
         @color = color
@@ -157,7 +161,7 @@ include Singleton
     def initialize; end
     
     def moves
-        []
+        ""
     end
 
     def symbol

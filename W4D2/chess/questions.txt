@@ -21,11 +21,11 @@ No.
 -----------------------
 
 
-Do you get back Piece instances where you expect to?
-Test out Board#move_piece(start_pos, end_pos), does it raise an error when there is no piece at the start?
-Does it successfully update the Board?
+Do you get back Piece instances where you expect to? YES
+Test out Board#move_piece(start_pos, end_pos), does it raise an error when there is no piece at the start? YES
+Does it successfully update the Board? YES
 
-NOTE: if we say is_a?(Piece), we won't get Rooks
+NOTE: if we say rooks.is_a?(Piece). Would return true
 
 
 empty board, one rook
