@@ -5,7 +5,10 @@ class Board
     @grid = Array.new(8) { Array.new(8)}
     @null_piece = NullPiece.new
     #populate with nullpieces? or populate with nils?
-
+    grid[0,0]= Rook.new("black")
+    grid[0,1]= Knight.new
+    grid[0,2]= Bishop.new
+    grid[0,3]
   end
 
   def move_piece(start_pos, end_pos)

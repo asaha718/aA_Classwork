@@ -21,6 +21,14 @@ module Slideable
 end
 
 module Stepable
+    def moves
+
+    end
+
+    private
+    def move_diffs
+
+    end
 
 end
 
@@ -112,19 +120,19 @@ end
 
 #Slideable
 class Rook < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
 
 class Bishop < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
 
 class Queen < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
@@ -132,20 +140,20 @@ end
 
 #Stepable
 class Knight < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
 
 class King < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
 
 #Pawn is special
 class Pawn < Piece
-    def initialize
+    def initialize(color, board, pos)
         super
     end
 end
