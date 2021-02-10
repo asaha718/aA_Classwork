@@ -2,15 +2,15 @@ module Slideable
 
     HORIZONTAL_DIRS = [
         [-1,0], # up
-        [1, 0], 
-        [0, 1], 
-        [0,-1]
+        [1, 0], # down
+        [0, 1], # right
+        [0,-1] # left
     ]
     DIAGONAL_DIRS = [
-        [1,1], 
-        [-1,-1], 
-        [1,-1], 
-        [-1,1]
+        [1,1], #down-right
+        [-1,-1], #up-left
+        [1,-1], #down-left
+        [-1,1] #up-right
     ]
 
     def horizontal_dirs
@@ -23,13 +23,41 @@ module Slideable
 
     private
     def move_dirs
-        #will swap the null piece for a char piece
+        raise "Implement this per-piece!"
     end
 
-    def grow_unblocked_moves_in_dir(dx, dy)
-        #will return end position 
-        start_pos= self.pos
-        last_pos= [start_pos[0]+dx, start[1]+dy]
+    def grow_unblocked_moves_in_dir(dir) #[1,1]
+        start_pos = self.pos
+        valid = true
+        moves_in_dir = []
+        current_pos = start_pos
+        while valid
+            #increments current position 
+            current_pos[0] += dir[0]
+            current_pos[1] += dir[1]
+
+            #checks current position for validity
+            case current_pos
+            when current_pos[0] < 0 || current_pos[1] < 0 #out of bounds of board
+                valid = false
+            when current_pos[0] > 7 || current_pos[1] > 7 #out of bounds of board
+                valid = false
+            when self.board[current_pos].color == self.color #your piece blocks it
+                valid = false
+            else
+                #it's valid so far. 
+                #if there's another piece:
+                    #you input the current_pos as possible
+                    #but then set valid to false afterwards (because you can't move afterwards)
+                moves_in_dir << current_pos
+                if self.board[current_pos].color != self.color && #if it's not your color ...
+                !self.board[current_pos].is_a?(NullPiece) && # ... and it's not a null piece ...
+                !self.board[current_pos].nil? # and it's not nil ...
+                    valid = false  #it must be another player's piece, so you set valid to false!
+                end
+            end
+        end
+        moves_in_dir
     end
 end
 
@@ -58,7 +86,7 @@ class InvalidCaptureError < StandardError
 end
 
 class Piece
-    attr_reader :color, :pos
+    attr_reader :color, :pos, :board
 
     def initialize(color, board, pos)
         @color= color
