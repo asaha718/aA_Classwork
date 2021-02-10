@@ -21,6 +21,15 @@ module Slideable
         DIAGONAL_DIRS
     end
 
+    def moves
+        possible_moves= []
+        possible_dirs= move_dirs
+        possible_dirs.each do |dir|
+            possible_moves.concat(grow_unblocked_moves_in_dir(dir))
+        end
+        possible_moves
+    end
+
     private
     def move_dirs
         raise "Implement this per-piece!"
@@ -165,21 +174,36 @@ end
 
 #Slideable
 class Rook < Piece
+    include Slideable
     def initialize(color, board, pos)
         super
+    end
+   
+    def move_dirs
+        horizontal_dirs
     end
 
 end
 
 class Bishop < Piece
+    include Slideable
     def initialize(color, board, pos)
         super
+    end
+
+    def move_dirs
+        diagonal_dirs
     end
 end
 
 class Queen < Piece
+    include Slideable
     def initialize(color, board, pos)
         super
+    end
+
+    def move_dirs
+        horizontal_dirs + diagonal_dirs
     end
 end
 
