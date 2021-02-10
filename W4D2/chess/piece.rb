@@ -59,9 +59,9 @@ module Slideable
                     #you input the current_pos as possible
                     #but then set valid to false afterwards (because you can't move afterwards)
                 moves_in_dir << current_pos
-                if self.board[current_pos].color != self.color && #if it's not your color ...
+                if (self.board[current_pos].color != self.color && #if it's not your color ...
                 !self.board[current_pos].is_a?(NullPiece) && # ... and it's not a null piece ...
-                !self.board[current_pos].nil? # and it's not nil ...
+                !self.board[current_pos].nil?) # and it's not nil ...
                     valid = false  #it must be another player's piece, so you set valid to false!
                 end
             end
@@ -72,12 +72,24 @@ end
 
 module Stepable
     def moves
-
+        valid_moves = []
+        dir = move_diffs #array of differences
+        dir.each do |dir|
+            start_pos = self.pos
+            move_pos = start_pos
+            move_pos[0] += dir[0]
+            move_pos[1] += dir[1]
+            on_pos = self.board[move_pos]
+            if on_pos.is_a?(NullPiece) || on_pos.color != self.color #other player's piece
+                valid_moves << move_pos
+            end
+        end
+        valid_moves
     end
 
     private
     def move_diffs
-
+        raise "This should be called per-piece!"
     end
 
 end
@@ -210,14 +222,42 @@ end
 
 #Stepable
 class Knight < Piece
+    include Stepable
     def initialize(color, board, pos)
         super
+    end
+
+    def move_diffs
+        KNIGHT_MOVES = [
+            [-1, 2],
+            [-1,-2],
+            [-2, 1],
+            [-2,-1],
+            [1, 2],
+            [1, -2],
+            [2, 1],
+            [2, -1]
+        ]
     end
 end
 
 class King < Piece
+    include Stepable
     def initialize(color, board, pos)
         super
+    end
+
+    def move_diffs
+        KING_MOVES = [
+            [-1,0], # up
+            [1, 0], # down
+            [0, 1], # right
+            [0,-1], # left
+            [1,1],  #down-right
+            [-1,-1],#up-left
+            [1,-1], #down-left
+            [-1,1]  #up-right
+        ]
     end
 end
 
