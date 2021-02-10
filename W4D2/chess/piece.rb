@@ -44,30 +44,29 @@ module Slideable
         current_pos = start_pos.dup
         while valid
             #increments current position 
-            current_pos[0] += dir[0]
-            current_pos[1] += dir[1]
+            current_pos = [current_pos[0] + dir[0], current_pos[1] + dir[1]]
 
             #checks current position for validity
-            case current_pos
-            when current_pos[0] < 0 || current_pos[1] < 0 #out of bounds of board
+            if current_pos[0] < 0 || current_pos[1] < 0 #out of bounds of board
                 valid = false
-                next
-            when current_pos[0] > 7 || current_pos[1] > 7 #out of bounds of board
+                break
+            elsif current_pos[0] > 7 || current_pos[1] > 7 #out of bounds of board
                 valid = false
-                next
-            when self.board[current_pos].color == self.color #your piece blocks it
+                break
+            elsif self.board[current_pos].color == self.color #your piece blocks it
                 valid = false
-                next
+                break
             else
                 #it's valid so far. 
                 #if there's another piece:
                     #you input the current_pos as possible
                     #but then set valid to false afterwards (because you can't move afterwards)
                 moves_in_dir << current_pos
-                if (self.board[current_pos].color != self.color && #if it's not your color ...
-                !self.board[current_pos].is_a?(NullPiece) && # ... and it's not a null piece ...
-                !self.board[current_pos].nil?) # and it's not nil ...
-                    valid = false  #it must be another player's piece, so you set valid to false!
+                color_at_current_pos = self.board[current_pos].color
+                if self.board[current_pos].is_a?(NullPiece)
+                    next
+                elsif color_at_current_pos != self.color
+                    valid = false  
                 end
             end
         end
@@ -81,12 +80,11 @@ module Stepable
         dir = move_diffs #array of differences
         dir.each do |dir|
             start_pos = self.pos
-            move_pos = start_pos
-            move_pos[0] += dir[0]
-            move_pos[1] += dir[1]
-            on_pos = self.board[move_pos]
-            if on_pos.is_a?(NullPiece) || on_pos.color != self.color #other player's piece
-                valid_moves << move_pos
+            current_pos = start_pos.dup
+            current_pos = [current_pos[0] + dir[0], current_pos[1] + dir[1]]
+            piece_on_pos = self.board[current_pos]
+            if piece_on_pos.is_a?(NullPiece) || piece_on_pos.color != self.color #other player's piece
+                valid_moves << current_pos
             end
         end
         valid_moves
@@ -200,9 +198,8 @@ class Rook < Piece
     end
    
     def move_dirs
-        horizontal_dirs
+        self.horizontal_dirs
     end
-
 end
 
 class Bishop < Piece

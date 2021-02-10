@@ -1,12 +1,15 @@
 require_relative "piece.rb"
+require "byebug"
 
 class Board
   def initialize
     @null_piece = NullPiece.instance
     @grid = Array.new(8) { Array.new(8, @null_piece)}
 
-    rook= Rook.new(:black, self, [4,4])
+    rook = Rook.new(:black, self, [4,4])
+    blocker = Pawn.new(:white, self, [3,4])
     self[[4,4]]= rook
+    self[[3,4]]= blocker
     
     # #black pieces
     # self[[0,0]] = Rook.new(:black, self,   [0,0])
@@ -103,6 +106,7 @@ end
 
 # ---------- TESTS ---------------
 board= Board.new
+
 p board[[4,4]].moves
 
 
