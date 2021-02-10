@@ -16,7 +16,7 @@ module Slideable
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-        
+
     end
 end
 
@@ -34,7 +34,13 @@ end
 
 class InvalidMoveError < StandardError
     def message
-        "That move was invalid, try again."
+        "That move was invalid, try again. Use take_piece to take pieces."
+    end
+end
+
+class InvalidCaptureError < StandardError
+    def message
+        "That capture was invalid, try again. Use move_piece to move to an unoccupied space."
     end
 end
 
@@ -61,7 +67,7 @@ class Piece
 
     end
 
-    def Symbol
+    def symbol
 
     end
 
@@ -104,10 +110,6 @@ include Singleton
 
     # def pos=(val)
     #    '' 
-    # end
-
-    # def Symbol #why capatilized
-    #     ''
     # end
 
     # private
