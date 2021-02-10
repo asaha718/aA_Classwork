@@ -1,22 +1,35 @@
 module Slideable
-    HORIZONTAL_DIRS = []
-    DIAGONAL_DIRS = []
+
+    HORIZONTAL_DIRS = [
+        [-1,0], # up
+        [1, 0], 
+        [0, 1], 
+        [0,-1]
+    ]
+    DIAGONAL_DIRS = [
+        [1,1], 
+        [-1,-1], 
+        [1,-1], 
+        [-1,1]
+    ]
 
     def horizontal_dirs
-
+        HORIZONTAL_DIRS
     end
 
     def diagonal_dirs
-        
+        DIAGONAL_DIRS
     end
 
     private
     def move_dirs
-
+        #will swap the null piece for a char piece
     end
 
     def grow_unblocked_moves_in_dir(dx, dy)
-
+        #will return end position 
+        start_pos= self.pos
+        last_pos= [start_pos[0]+dx, start[1]+dy]
     end
 end
 
@@ -45,6 +58,8 @@ class InvalidCaptureError < StandardError
 end
 
 class Piece
+    attr_reader :color, :pos
+
     def initialize(color, board, pos)
         @color= color
         @board = board
@@ -125,6 +140,7 @@ class Rook < Piece
     def initialize(color, board, pos)
         super
     end
+
 end
 
 class Bishop < Piece
