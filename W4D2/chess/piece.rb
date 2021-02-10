@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Slideable
 
     HORIZONTAL_DIRS = [
@@ -22,8 +24,8 @@ module Slideable
     end
 
     def moves
-        possible_moves= []
-        possible_dirs= move_dirs
+        possible_moves = []
+        possible_dirs = move_dirs
         possible_dirs.each do |dir|
             possible_moves.concat(grow_unblocked_moves_in_dir(dir))
         end
@@ -96,13 +98,19 @@ end
 
 class InvalidMoveError < StandardError
     def message
-        "That move was invalid, try again. Use take_piece to take pieces."
+        "That move was invalid. Use capture_piece to take pieces."
     end
 end
 
 class InvalidCaptureError < StandardError
     def message
-        "That capture was invalid, try again. Use move_piece to move to an unoccupied space."
+        "That capture was invalid. Use move_piece to move to an unoccupied space."
+    end
+end
+
+class OutOfBoundsError < StandardError
+    def message
+        "That move was out of bounds."
     end
 end
 
@@ -110,9 +118,9 @@ class Piece
     attr_reader :color, :pos, :board
 
     def initialize(color, board, pos)
-        @color= color
+        @color = color
         @board = board
-        @pos= pos
+        @pos = pos
     end
 
     def to_s
@@ -146,18 +154,14 @@ end
 class NullPiece < Piece
 include Singleton
 
-    def initialize(color, board, pos)
-        color = nil
-        board = nil
-        pos = nil
-    end
+    def initialize; end
     
     def moves
-
+        []
     end
 
     def symbol
-
+        ""
     end
 
     # def to_s
@@ -228,7 +232,7 @@ class Knight < Piece
     end
 
     def move_diffs
-        KNIGHT_MOVES = [
+        @knight_moves = [
             [-1, 2],
             [-1,-2],
             [-2, 1],
@@ -248,7 +252,7 @@ class King < Piece
     end
 
     def move_diffs
-        KING_MOVES = [
+        @king_moves = [
             [-1,0], # up
             [1, 0], # down
             [0, 1], # right
