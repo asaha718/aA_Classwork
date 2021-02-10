@@ -1,4 +1,34 @@
+module Slideable
+    HORIZONTAL_DIRS = []
+    DIAGONAL_DIRS = []
 
+    def horizontal_dirs
+
+    end
+
+    def diagonal_dirs
+        
+    end
+
+    private
+    def move_dirs
+
+    end
+
+    def grow_unblocked_moves_in_dir(dx, dy)
+        
+    end
+end
+
+module Stepable
+
+end
+
+class InvalidMoveError < StandardError
+    def message
+        "That move was invalid, try again."
+    end
+end
 
 class Piece
     def initialize(color, board, pos)
@@ -39,7 +69,9 @@ class NullPiece < Piece
 include Singleton
 
     def initialize(color, board, pos)
-        super
+        color = nil
+        board = nil
+        pos = nil
     end
     
     def moves
@@ -75,4 +107,45 @@ include Singleton
     #     ''
     # end
         
+end
+
+
+#Slideable
+class Rook < Piece
+    def initialize
+        super
+    end
+end
+
+class Bishop < Piece
+    def initialize
+        super
+    end
+end
+
+class Queen < Piece
+    def initialize
+        super
+    end
+end
+
+
+#Stepable
+class Knight < Piece
+    def initialize
+        super
+    end
+end
+
+class King < Piece
+    def initialize
+        super
+    end
+end
+
+#Pawn is special
+class Pawn < Piece
+    def initialize
+        super
+    end
 end
