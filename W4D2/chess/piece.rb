@@ -264,6 +264,10 @@ class King < Piece
             [-1,1]  #up-right
         ]
     end
+
+    def symbol
+        :king
+    end
 end
 
 #Pawn is special

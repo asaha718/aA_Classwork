@@ -96,6 +96,25 @@ class Board
     row, col = pos
     @grid[row][col] = value
   end
+
+  def in_check?(color) #return whether a player is in check 
+    pos= []
+    @grid.each_with_index do |row, i|
+      row.each_with_index do |piece, i2|
+        if piece.is_a?(King)
+          pos = [i, i2]
+        end
+      end
+    end
+
+    @grid.each_with_index do |row, i|
+      row.each_with_index do |piece, i2|
+        unless piece.is_a?(NullPiece)
+          return true if piece.moves.include?(pos)
+      end
+    end
+     return false   
+  end
 end
 
 
