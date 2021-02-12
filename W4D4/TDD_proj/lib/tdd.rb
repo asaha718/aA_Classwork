@@ -47,9 +47,27 @@ def my_transpose(rows)
 end
 
 #Stock Picker
-#stock_picker([4,6,4,7,5]) => [0,3]
+#stock_picker([4,6,4,7,5]) => [0,3] which are indexes
 
 def stock_picker(array)
-  
+  days= nil
+  profit_best=0
+
+  array.each_index do |buy|
+    array.each_index do |sell|
+      if sell< buy 
+        next
+      end
+      profit = array[sell]- array[buy]
+      if profit > profit_best
+        profit_best = profit
+        days= [buy, sell]
+      end
+    end
+  end
+
+  days
+
 end
 
+p stock_picker([4,6,4,7,5]) #=> [0,3]
