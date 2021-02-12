@@ -30,7 +30,26 @@ class Array
 
     pairs 
   end
-
 end
 
+def my_transpose(rows)
+
+  transposed= Array.new(rows.length) {Array.new(rows.length)} # [[x,x,x], [x,x,x], [x,x,x]]
+
+  (0...rows.length).each do |i|
+    (0...rows.length).each do |j|
+      transposed[j][i] = rows[i][j]
+    end
+  end
+
+  transposed
+    
+end
+
+#Stock Picker
+#stock_picker([4,6,4,7,5]) => [0,3]
+
+def stock_picker(array)
+  
+end
 
