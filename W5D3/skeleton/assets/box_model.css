@@ -4,24 +4,30 @@ body {
   /* If the user cannot load the Arial font, the sans-serif font is used */
   font-family: Arial, sans-serif;
   background-color: #FEFFF1;
+  width: 900px;
+  margin: 0 auto;
+  display: flex; 
 }
 
-/* nav li, img {
-  display: inline-flex;
+nav li {
+  display: inline-block;
   padding: 20px;
-} */
+}
 
 header {
-  display: inline-flex;
+  display: inline-block;
 }
 
-/* nav + img {
-  display: inline-block;
-} */
+section {
+  width: 700px;
+  flex-direction: left; 
+}
 
-/* header img {
-  display: inline-block;
-} */
+aside {
+  width: 180px;
+  flex-direction: right;
+  margin-right: 15px;
+}
 
 h1 {
   font-size: 38px;
