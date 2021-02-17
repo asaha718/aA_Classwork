@@ -37,7 +37,7 @@ CREATE TABLE replies (
     FOREIGN KEY (replies_id) REFERENCES replies(id)
 );
 
-CREATE TABLE questions_like (
+CREATE TABLE question_likes (
     id INTEGER PRIMARY KEY,
     questions_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
@@ -52,3 +52,36 @@ VALUES
     ('Carrie', 'Bares'),
     ('Anug', 'Saha');
 
+INSERT INTO
+    questions (title, body, associated_author)
+VALUES
+    ('ruby', 'what''s ruby?', SELECT id FROM users WHERE fname = 'Carrie')
+    ('sql', 'what''s sql?', SELECT id FROM users WHERE fname = 'Anug');
+
+INSERT INTO
+    question_follows (user_id, questions_id)
+VALUES
+    (SELECT id FROM users WHERE fname = 'Carrie', 
+    SELECT id FROM questions WHERE title = 'sql')
+    (SELECT id FROM users WHERE fname = 'Anug', 
+    SELECT id FROM questions WHERE title = 'ruby');
+
+INSERT INTO
+    replies(questions_id, replies_id, user_id, body)
+VALUES
+    (SELECT id FROM questions WHERE title = 'sql',
+    NULL,
+    SELECT id FROM users WHERE fname = 'Carrie',
+    "I also want to know what sql is"),
+    (SELECT id FROM questions WHERE title = 'ruby',
+    NULL,
+    SELECT id FROM users WHERE fname = 'Anug',
+    "I also want to know what ruby is");
+
+INSERT INTO
+    question_likes(questions_id, user_id)
+VALUES
+    (SELECT id from questions WHERE title = "ruby",
+    SELECT id FROM users WHERE fname = 'Carrie'),
+    (SELECT id from questions WHERE title = "sql",
+    SELECT id FROM users WHERE fname = 'Anug');
