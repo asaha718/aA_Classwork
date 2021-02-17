@@ -6,6 +6,23 @@ body {
   background-color: #FEFFF1;
 }
 
+/* nav li, img {
+  display: inline-flex;
+  padding: 20px;
+} */
+
+header {
+  display: inline-flex;
+}
+
+/* nav + img {
+  display: inline-block;
+} */
+
+/* header img {
+  display: inline-block;
+} */
+
 h1 {
   font-size: 38px;
 }
