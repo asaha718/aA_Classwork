@@ -28,6 +28,17 @@ aside {
   margin-right: 15px;
 }
 
+.ingredients-list li {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+ol li {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
 aside + section {
   display: flex;
   flex-direction: row;
@@ -42,6 +53,20 @@ h1 {
 h2 {
   font-size: 32px;
 }
+
+[type="radio"] {
+    display: inline-block
+}
+
+label {
+  display: none;
+}
+
+select {
+  margin: 10px;
+}
+
+
 
 /* This selector selects ALL anchor tag children of ALL list elements that
 are children of an Unordered Lsit element */
