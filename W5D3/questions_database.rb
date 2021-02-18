@@ -25,6 +25,19 @@ class Question
         Question.new(question.first)
     end
 
+    def self.find_by_author_id(id)
+        question = QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                questions
+            WHERE
+                associated_author= ?
+        SQL
+        return nil unless question.length > 0
+        Question.new(question.first)
+    end 
+
     def initialize(options)
         @id = options['id']
         @title = options['title']
@@ -36,8 +49,32 @@ end
 
 class User
 
-    def self.find_by_id
+    def self.find_by_id(id)
+        user = QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                users
+            WHERE
+                id = ?
+        SQL
+        return nil unless user.length > 0
+        User.new(user.first)
     end
+
+    def self.find_by_name(fname, lname)
+        user = QuestionsDatabase.instance.execute(<<-SQL, fname, lname )
+            SELECT
+                *
+            FROM
+                users
+            WHERE
+                fname= ? AND lname= ?
+        SQL
+        return nil unless user.length > 0
+        User.new(user.first)
+    end
+
 
     def initialize(options)
         @id = options['id']
@@ -49,8 +86,19 @@ end
 
 class QuestionFollow
 
-    def self.find_by_id
+    def self.find_by_id(id)
+        follow = QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                question_follow
+            WHERE
+                id = ?
+        SQL
+        return nil unless follow.length > 0
+        QuestionFollow.new(follow.first)
     end
+
 
     def initialize(options)
         @id = options['id']
@@ -62,7 +110,43 @@ end
 
 class Reply
 
-    def self.find_by_id
+    def self.find_by_id(id)
+        reply= QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                replies
+            WHERE
+                id = ?
+        SQL
+        return nil unless reply.length > 0
+        Relpy.new(reply.first)
+    end
+
+    def self.find_by_user_id(id)
+        reply = QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                questions
+            WHERE
+                user_id = ?
+        SQL
+        return nil unless reply.length > 0
+        Reply.new(reply.first)
+    end
+
+    def self.find_by_question_id(id)
+        reply = QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                questions
+            WHERE
+                question_id = ?
+        SQL
+        return nil unless reply.length > 0
+        Reply.new(reply.first)
     end
 
     def initialize(options)
@@ -77,7 +161,17 @@ end
 
 class QuestionLike
 
-    def self.find_by_id
+    def self.find_by_id(id)
+        like= QuestionsDatabase.instance.execute(<<-SQL, id)
+            SELECT
+                *
+            FROM
+                question_likes
+            WHERE
+                id = ?
+        SQL
+        return nil unless like.length > 0
+        QuestionLike.new(like.first)
     end
 
     def initialize(options)
