@@ -21,6 +21,8 @@ class Question
             WHERE
                 id = ?
         SQL
+        return nil unless question.length > 0
+        Question.new(question.first)
     end
 
     def initialize(options)
