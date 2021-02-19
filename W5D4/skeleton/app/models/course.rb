@@ -1,0 +1,23 @@
+class Course < ApplicationRecord
+
+    has_one :enrollment, 
+        primary_key: :id, 
+        foreign_key: :course_id, 
+        class_name: :Enrollment
+
+    has_many :enrolled_students, 
+        through: :enrollment, 
+        source: :user
+
+    belongs_to :prerequisite, 
+        primary_key: :id, 
+        foreign_key: :prereq_id,
+        class_name: :Course, 
+        optional: true  #look into what this does
+
+    belongs_to :instructor, 
+        primary_key: :id, 
+        foreign_key: :instructor_id, 
+        class_name: :User
+
+end
