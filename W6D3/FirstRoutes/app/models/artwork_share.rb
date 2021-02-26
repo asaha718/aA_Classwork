@@ -1,6 +1,6 @@
 class ArtworkShare < ApplicationRecord
     #does this effect viewer and artwork relationship. Multiple viewers 
-    validates :viewer_id, uniqueness: {scope: :artwork_id}
+    validates :artwork_id, uniqueness: {scope: :viewer_id}
 
     belongs_to :viewer, 
         foreign_key: :viewer_id, 
