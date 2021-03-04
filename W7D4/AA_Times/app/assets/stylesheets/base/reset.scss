@@ -5,17 +5,17 @@ ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
 span, article, footer, time, small {
-  // margin:
+  margin: 0;
   padding: 0; 
-  // border:
-  // outline:
+  border: 0;
+  outline: 0;
   font: inherit; 
-  color: black; 
-  // text-align:
-  // text-decoration:
-  vertical-align: baseline; 
+  color: inherit; 
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit; 
   box-sizing: inherit; 
-  background: white;  
+  background: transparent;  
 }
 
 ol, ul {
@@ -51,8 +51,7 @@ input[type="submit"] {
 /* Clearfix */
 
 
-.group:after {
-  
+.group:after { 
   content: "";
   clear: both;
   display: table;

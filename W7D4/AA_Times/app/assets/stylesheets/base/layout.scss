@@ -8,29 +8,34 @@ html {
 body {
 	width: 80%;
 	margin: 0 auto; 
-	font-family: serif;
+	font-family: $serif;
 	font-size: 12px;
 
 }
 
 button {
-	background-color: rgb(75, 75, 241); 
-	border-color: gray; 
-	// color: 
-	font-weight: 30%; 
-	padding: 3px; 
-	border-radius: 10%;  
-	// transition:
-	// font-family:
-	// text-transform:
-	// font-size:
+	background-color: $light-blue; 
+	border-color: $dark-blue; 
+	color: white;
+	font-weight: bold; 
+	padding: 7px 9px; 
+	border-radius: 3px;  
+	transition: 0s;
+	font-family: $sans-serif;
+	text-transform: uppercase;
+	font-size: 11px;
 	text-align: center; 
 }
 
 button:hover {
-	background-color: blue; 
-	border-color: darkblue; 
+	background-color: $blue; 
+	border-color: $dark-blue; 
 	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: underline;
+
 }
 
 /*
@@ -53,15 +58,4 @@ hr {
 	margin-bottom: 1px;
 }
 
-.main-nav { 
-	display: flex; 
-	justify-content: space-between;
-	
-
-}
-
-ul {
-	display: flex;
-	padding: 10px;
-}
 

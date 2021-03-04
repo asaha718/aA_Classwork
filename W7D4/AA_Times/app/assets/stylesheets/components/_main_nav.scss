@@ -1,22 +1,28 @@
 .main-nav {
+	display: flex; 
+	justify-content: space-between;
+
 
 }
 
 .left-nav > ul,
 .right-nav > ul {
-
+  display: flex;
+  align-items: center;
 }
 
 .left-nav {
 
   > ul {
     > li {
+      font-family: serif;
+      font-size: medium;
 
     }
   }
 
   span {
-
+    margin-left: 10px;    
   }
 }
 
@@ -26,6 +32,7 @@
 
     > li {
   
+      margin-left: 5px;
     }
 
     > li:last-of-type {
@@ -42,3 +49,5 @@
 .right-nav > ul > li:last-of-type:hover {
 
 }
+
+
