@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <% if logged_in?%>
+      <form action="<%= session_url %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>Sign out</button>
+      </form>
+    <% end %>
+    
+    <% if flash[:errors] %>
+      <%= flash[:errors].join(", ") %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

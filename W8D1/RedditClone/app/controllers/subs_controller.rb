@@ -10,21 +10,32 @@ class SubsController < ApplicationController
     if @sub.save
       redirect_to user_url(params[:id])
     else
-      flash[:errors]= sub.errors.full_messages
+      flash[:errors]= @sub.errors.full_messages
       render :new
     end
   end
 
   def index
+    @subs= Sub.all
+    render :index
   end
 
   def show
+    @sub= Sub.find_by(id: params[:id])
   end
 
   def edit
+    @sub= Sub.find_by(id: params[:id])
   end
 
   def update
+    @sub= Sub.find_by(id: params[:id])
+    if @sub.update(sub_params)
+      redirect_to sub_url
+    else
+      flash[:errors]= @sub.errors.full_messages
+      render :edit
+    end
   end
 
   def sub_params
