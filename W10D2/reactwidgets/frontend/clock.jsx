@@ -18,6 +18,7 @@ export default class Clock extends React.Component{
     }
 
     render(){ 
+        let date = this.state.time.toDateString();
         let hours= this.state.time.getHours(); 
         let minutes= this.state.time.getMinutes(); 
         let seconds= this.state.time.getSeconds(); 
@@ -26,9 +27,11 @@ export default class Clock extends React.Component{
             <div>
                 <h1>Clock</h1>
                 <div className="clock">
-                    <span>
-                        {hours}:{minutes}:{seconds}
-                    </span>
+                    <span>Date: {date}</span>
+                    <br></br>
+                        <span>
+                            Time: {hours}:{minutes}:{seconds}
+                        </span>
                 </div>
             </div>
         )
