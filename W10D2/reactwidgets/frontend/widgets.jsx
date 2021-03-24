@@ -4,14 +4,17 @@ import Clock from "./clock";
 import Tabs from "./tabs";
 
 
-const tabs_comp= [{title:'title', content: 'hi'}]
+const tabs_comp= [{title:'Home', content: 'Welcome home, kid'}, 
+    {title:'Two', content:'this is two'},
+    {title:'Three', content:'this is the third'}
+]; 
 
 
 const Root = () => { 
     return(
       <div>
       <Clock />
-      <Tabs banana={tabs_comp} />
+      <Tabs tabs={tabs_comp} />
     </div>
     )
 }
