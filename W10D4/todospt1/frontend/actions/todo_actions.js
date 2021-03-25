@@ -9,7 +9,7 @@ const receiveTodos = (todos) => {
     };
 };
 
-const receiveTodos = (todo) => {
+const receiveTodo = (todo) => {
     return {
         type: RECEIVE_TODO,
         todo: todo,
