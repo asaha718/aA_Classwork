@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import {receiveTodos, receiveTodo} from './actions/todo_actions';
+import Root from './components/root'
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -10,5 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const store= configureStore(); 
     window.store= store;
     const hello = <h1>To Do List</h1>;
-    ReactDOM.render(hello, root);
+    ReactDOM.render(<Root store= {store} />, root);
   });
