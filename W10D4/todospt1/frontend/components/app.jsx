@@ -1,7 +1,10 @@
 import React from 'react'; 
+import ToDoListContainer from "./todos/todo_list_container"
 
 const App = () => (
-    <h1> This is App in app.jsx </h1>
+    <div>
+        <ToDoListContainer />
+    </div>
 )
 
 export default App; 
