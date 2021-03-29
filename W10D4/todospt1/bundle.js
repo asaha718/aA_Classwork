@@ -143,6 +143,27 @@ var Root = function Root(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/todo_list/todo_list_item.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/todo_list/todo_list_item.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    key: props.todo.id
+  }, props.todo.title);
+});
+
+/***/ }),
+
 /***/ "./frontend/components/todos/todo_list.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/todos/todo_list.jsx ***!
@@ -155,10 +176,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../todo_list/todo_list_item */ "./frontend/components/todo_list/todo_list_item.jsx");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "To Do List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.todos.map(function (task, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, task.title);
+    return (0,_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__.default)({
+      todo: task
+    });
   })));
 });
 
