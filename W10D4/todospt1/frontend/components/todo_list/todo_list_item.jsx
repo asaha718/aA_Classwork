@@ -2,5 +2,5 @@ import React from 'react';
 
 export default (props) =>{ 
     return (
-    <li key={props.todo.id}>{props.todo.title}</li>  
+    <li>{props.todo.title}</li>  
 )};  
