@@ -13,6 +13,7 @@ class PokemonIndex extends React.Component{
   
   render(){
     return (
+    //Route renders  . 
     <section className="pokedex">
       <ul>
       {this.props.pokemon.map((poke) => (
