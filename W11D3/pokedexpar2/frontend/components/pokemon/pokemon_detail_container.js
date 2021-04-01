@@ -1,4 +1,6 @@
 import {connect} from 'react-redux';
+import {requestPokeman} from '../../actions/pokemon_actions'; 
+import PokemonDetail from './pokemon_detail'; 
 
 const mapStateToProps = state => ({
   pokemon: state.entities.pokemon,
